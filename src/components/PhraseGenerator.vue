@@ -142,7 +142,6 @@ const adjectives = [
   "Quick",
   "Quiet",
   "Quirky",
-  "Questionable",
   "Reliable",
   "Responsible",
   "Rich",
@@ -184,6 +183,7 @@ const adjectives = [
 
 const animals = [
   "Alligator",
+  "Alpaca",
   "Antelope",
   "Ape",
   "Armadillo",
@@ -251,6 +251,7 @@ const animals = [
   "Moose",
   "Mule",
   "Opossum",
+  "Orca",
   "Ostrich",
   "Otter",
   "Owl",
@@ -280,7 +281,6 @@ const animals = [
   "Toad",
   "Turkey",
   "Turtle",
-  "Wallaby",
   "Walrus",
   "Wasp",
   "Weasel",
@@ -294,6 +294,7 @@ const animals = [
 
 const chosenAdjective = ref('adjective')
 const chosenAnimal = ref('animal')
+const chosenSeparator = ref('')
 
 onMounted(() => getPhrase())
 
@@ -310,9 +311,32 @@ function getRandomIndex(listLength) {
 
 <template>
   <div class="phraseGenerator__container">
-    <div class="phraseGenerator__phrase">
-      {{ chosenAdjective }}{{ chosenAnimal }}
+    <div>
+      <div class="phraseGenerator__phrase">
+        {{ chosenAdjective }}{{ chosenSeparator }}{{ chosenAnimal }}
+      </div>
+      <div class="phraseGenerator__separatorOptions">
+        <span>
+          <input type="radio" id="radioButton__space" name="separator" value=" " v-model="chosenSeparator" />
+          <label for="radioButton__space">Space</label>
+        </span>
+        <span>
+
+          <input type="radio" id="radioButton__period" name="separator" value="." v-model="chosenSeparator" />
+          <label for="radioButton__period">Period</label>
+        </span>
+        <span>
+          <input type="radio" id="radioButton__hyphen" name="separator" value="-" v-model="chosenSeparator" />
+          <label for="radioButton__hyphen">Hyphen</label>
+        </span>
+        <span>
+          <input type="radio" id="radioButton__none" name="separator" value="" v-model="chosenSeparator" />
+          <label for="radioButton__none">None</label>
+        </span>
+      </div>
     </div>
+
+    <br>
     <button @click="getPhrase">Generate phrase</button>
   </div>
 </template>
@@ -321,7 +345,7 @@ function getRandomIndex(listLength) {
 .phraseGenerator__container {
   width: 100%;
   display: flex;
-  gap: 4rem;
+  gap: 2rem;
   align-items: center;
   justify-content: center;
 }
@@ -332,6 +356,16 @@ function getRandomIndex(listLength) {
 
   color: rgb(219, 219, 219);
   border-bottom: 8px solid rgb(219, 219, 219);
+}
+
+.phraseGenerator__separatorOptions {
+  display: flex;
+  gap: 24px;
+  color: white;
+
+  input {
+    margin-right: 8px;
+  }
 }
 
 button {
