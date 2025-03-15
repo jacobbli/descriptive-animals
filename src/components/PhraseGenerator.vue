@@ -361,7 +361,10 @@ function getRandomIndex(listLength) {
 .phraseGenerator__separatorOptions {
   display: flex;
   gap: 24px;
-  color: white;
+
+  label {
+    color: white;
+  }
 
   input {
     margin-right: 8px;
