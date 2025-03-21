@@ -311,7 +311,7 @@ function getRandomIndex(listLength) {
 
 <template>
   <div class="phraseGenerator__container">
-    <div>
+    <div class="phraseGenerator__content">
       <div class="phraseGenerator__phrase">
         {{ chosenAdjective }}{{ chosenSeparator }}{{ chosenAnimal }}
       </div>
@@ -335,8 +335,6 @@ function getRandomIndex(listLength) {
         </span>
       </div>
     </div>
-
-    <br>
     <button @click="getPhrase">Generate phrase</button>
   </div>
 </template>
@@ -345,29 +343,36 @@ function getRandomIndex(listLength) {
 .phraseGenerator__container {
   width: 100%;
   display: flex;
-  gap: 2rem;
+  flex-direction: column;
+  gap: 20px;
   align-items: center;
   justify-content: center;
 }
 
-.phraseGenerator__phrase {
-  width: 40rem;
-  font-size: 3rem;
+.phraseGenerator__content {
+  width: 100%;
 
-  color: rgb(219, 219, 219);
-  border-bottom: 8px solid rgb(219, 219, 219);
-}
+  .phraseGenerator__phrase {
+    width: 100%;
+    font-size: 3rem;
 
-.phraseGenerator__separatorOptions {
-  display: flex;
-  gap: 24px;
+    color: rgb(219, 219, 219);
+    border-bottom: 8px solid rgb(219, 219, 219);
 
-  label {
-    color: white;
+    word-wrap: break-word;
   }
 
-  input {
-    margin-right: 8px;
+  .phraseGenerator__separatorOptions {
+    display: flex;
+    gap: 24px;
+
+    label {
+      color: white;
+    }
+
+    input {
+      margin-right: 8px;
+    }
   }
 }
 
@@ -383,5 +388,11 @@ button {
 
   border-radius: 50%;
   cursor: pointer;
+}
+
+@media only screen and (min-width: 768px) {
+  .phraseGenerator__container {
+    width: 50%;
+  }
 }
 </style>
